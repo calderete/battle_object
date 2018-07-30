@@ -21,11 +21,11 @@ var GameState = {
       name: "DPS",
       resolution: 100,
       power: 10,
-      attack_speed: 1,
+      attackSpeed: 1,
       objectId: 1,
       target: false,
-      targeted_by: 0,
-      weapons_free: true }
+      targetedBy: 0,
+      weaponsFree: true }
 
     this.battleObject.inputEnabled = true;
     this.battleObject.events.onInputDown.add(this.auto_attack, this)
@@ -37,11 +37,11 @@ var GameState = {
       name: "Enemy DPS",
       resolution: 100,
       power: 10,
-      attack_speed: 2,
+      attackSpeed: 2,
       objectId: 2,
       target: false,
-      targeted_by: 0,
-      weapons_free: true }
+      targetedBy: 0,
+      weaponsFree: true }
 
     this.enemyObject.inputEnabled = true;
     this.enemyObject.events.onInputDown.add(this.displayStats, this);
@@ -50,13 +50,13 @@ var GameState = {
 
   auto_attack: function() {
    // this.enemyObject.customParams.resolution -= this.battleObject.customParams.power
-   this.game.time.events.loop(Phaser.Timer.SECOND * this.battleObject.customParams.attack_speed, this.damage, this);
+   this.game.time.events.loop(Phaser.Timer.SECOND * this.battleObject.customParams.attackSpeed, this.damage, this);
    // console.log(this.enemyObject.customParams);
   },
 
   damage: function() {
     this.enemyObject.customParams.resolution -= this.battleObject.customParams.power;
-    this.enemyObject.customParams.targeted_by = this.battleObject.customParams.objectId;
+    this.enemyObject.customParams.targetedBy = this.battleObject.customParams.objectId;
     console.log(this.enemyObject.customParams);
   },
 
